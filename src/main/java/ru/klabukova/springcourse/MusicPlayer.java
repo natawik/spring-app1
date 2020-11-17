@@ -3,6 +3,9 @@ package ru.klabukova.springcourse;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MusicPlayer {
 	private List<Music> musicList = new ArrayList<>();
 	private String name;
