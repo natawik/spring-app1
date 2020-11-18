@@ -1,35 +1,34 @@
 package ru.klabukova.springcourse;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MusicPlayer {
-	private List<Music> musicList = new ArrayList<>();
+	private Music music1;
+	private Music music2;
+	private Music music3;
 	private String name;
 	private int volume;
 	
 	public MusicPlayer() {}
 	
 	@Autowired
-	public MusicPlayer(List<Music> musicList) {
-		this.musicList = musicList;
-	}
-	
-	public void setMusic(List<Music> musicList) {
-		this.musicList = musicList;
+	public MusicPlayer(@Qualifier("classicalMusic") Music music1, 
+					   @Qualifier("rockMusic") Music music2, 
+					   @Qualifier("popMusic") Music music3) {
+		this.music1 = music1;
+		this.music2 = music2;
+		this.music3 = music3;
 	}
 	
 	public void playMusic() {
-		for (Music m : musicList) {
-			System.out.println("Playing: " + m.getSong());
-		}
-		
+		System.out.println("Playing: " + music1.getSong());
+		System.out.println("Playing: " + music2.getSong());
+		System.out.println("Playing: " + music3.getSong());
 	}
-
+	
 	public String getName() {
 		return name;
 	}

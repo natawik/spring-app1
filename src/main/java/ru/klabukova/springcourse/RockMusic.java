@@ -1,12 +1,24 @@
 package ru.klabukova.springcourse;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import org.springframework.stereotype.Component;
 
 @Component
 public class RockMusic implements Music {
+	private List<String> songs = new ArrayList<>();
+	
+	public RockMusic() {
+		songs.add("Whole Lotta Love");
+		songs.add("ThunderStruck");
+		songs.add("Wind cries Mary");
+	}
 
 	public String getSong() {
-		return "Wind cries Mary";
+		Random rand = new Random();
+	    return songs.get(rand.nextInt(songs.size()));
 	}
 
 }
