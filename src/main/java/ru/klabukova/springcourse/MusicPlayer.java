@@ -1,22 +1,16 @@
 package ru.klabukova.springcourse;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MusicPlayer {
+	@Value("${musicPlayer.name}")
 	private String name;
+	@Value("${musicPlayer.volume}")
 	private int volume;
 	
 	public MusicPlayer() {}
-	
-	@Autowired
-	public MusicPlayer(List<Music> music) {
-		this.name = "My Player";
-		this.volume = 50;
-	}
 	
 	public void playMusic(Genre genre) {
 		Music musicPlaying = null;
