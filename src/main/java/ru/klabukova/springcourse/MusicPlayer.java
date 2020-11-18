@@ -1,34 +1,36 @@
 package ru.klabukova.springcourse;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MusicPlayer {
-	private Music music1;
-	private Music music2;
-	private Music music3;
 	private String name;
 	private int volume;
 	
 	public MusicPlayer() {}
 	
 	@Autowired
-	public MusicPlayer(@Qualifier("classicalMusic") Music music1, 
-					   @Qualifier("rockMusic") Music music2, 
-					   @Qualifier("popMusic") Music music3) {
-		this.music1 = music1;
-		this.music2 = music2;
-		this.music3 = music3;
+	public MusicPlayer(List<Music> music) {
 		this.name = "My Player";
 		this.volume = 50;
 	}
 	
-	public void playMusic() {
-		System.out.println("Playing: " + music1.getSong());
-		System.out.println("Playing: " + music2.getSong());
-		System.out.println("Playing: " + music3.getSong());
+	public void playMusic(Genre genre) {
+		Music musicPlaying = null;
+		if (genre.equals(Genre.CLASSICALMUSIC)) {
+			musicPlaying = new ClassicalMusic();
+		}
+		else if (genre.equals(Genre.ROCKMUSIC)) {
+			musicPlaying = new RockMusic();
+		}
+		else if (genre.equals(Genre.POPMUSIC)) {
+			musicPlaying = new PopMusic();
+		}
+		System.out.println("Playing: " + musicPlaying.getSong());
+		
 	}
 	
 	public String getName() {
