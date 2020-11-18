@@ -1,10 +1,14 @@
 package ru.klabukova.springcourse;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-@Component
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
 public class MusicPlayer {
+	List<Music> musicList = new ArrayList<>();
 	@Value("${musicPlayer.name}")
 	private String name;
 	@Value("${musicPlayer.volume}")
@@ -12,18 +16,15 @@ public class MusicPlayer {
 	
 	public MusicPlayer() {}
 	
-	public void playMusic(Genre genre) {
-		Music musicPlaying = null;
-		if (genre.equals(Genre.CLASSICALMUSIC)) {
-			musicPlaying = new ClassicalMusic();
-		}
-		else if (genre.equals(Genre.ROCKMUSIC)) {
-			musicPlaying = new RockMusic();
-		}
-		else if (genre.equals(Genre.POPMUSIC)) {
-			musicPlaying = new PopMusic();
-		}
-		System.out.println("Playing: " + musicPlaying.getSong());
+	public MusicPlayer(List<Music> musicList) {
+		this.musicList = musicList;
+	}
+	
+	public void playMusic() {
+		Random rand = new Random();
+	    Music music = musicList.get(rand.nextInt(musicList.size()));
+	    
+		System.out.println("Playing: " + music.getSong());
 		
 	}
 	

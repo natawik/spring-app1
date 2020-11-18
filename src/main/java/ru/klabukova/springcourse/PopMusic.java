@@ -6,7 +6,6 @@ import java.util.Random;
 
 import org.springframework.stereotype.Component;
 
-@Component
 public class PopMusic implements Music {
 	private List<String> songs = new ArrayList<>();
 	
