@@ -21,6 +21,8 @@ public class MusicPlayer {
 		this.music1 = music1;
 		this.music2 = music2;
 		this.music3 = music3;
+		this.name = "My Player";
+		this.volume = 50;
 	}
 	
 	public void playMusic() {
