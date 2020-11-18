@@ -3,6 +3,7 @@ package ru.klabukova.springcourse;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,6 +14,7 @@ public class MusicPlayer {
 	
 	public MusicPlayer() {}
 	
+	@Autowired
 	public MusicPlayer(List<Music> musicList) {
 		this.musicList = musicList;
 	}
